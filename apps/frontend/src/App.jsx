@@ -3,7 +3,41 @@ import "./App.css";
 
 import { PrivyClient, SiweSession } from "@privy-io/privy-browser";
 
-function App() {
+import "@rainbow-me/rainbowkit/styles.css";
+
+import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+import { publicProvider } from "wagmi/providers/public";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
+const { chains, provider } = configureChains(
+  [chain.mainnet],
+  [alchemyProvider({ alchemyId: import.meta.env.ALCHEMY_ID }), publicProvider()]
+);
+
+const { connectors } = getDefaultWallets({
+  appName: "My RainbowKit App",
+  chains,
+});
+
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors,
+  provider,
+});
+
+const App = () => {
+  return (
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider chains={chains}>
+        <TheApp provider={provider} />
+      </RainbowKitProvider>
+    </WagmiConfig>
+  );
+};
+
+function TheApp(props) {
   const [state, setState] = useState(null);
   const [count, setCount] = useState(0);
   const [usernameInput, setUsernameInput] = useState("");
@@ -12,8 +46,10 @@ function App() {
   window.process = {};
 
   // Initialize the Privy client.
-  const provider = typeof window !== "undefined" ? window.ethereum : null;
-  const session = new SiweSession(import.meta.env.VITE_PRIVY_API_KEY, provider);
+  const session = new SiweSession(
+    import.meta.env.VITE_PRIVY_API_KEY,
+    props.provider
+  );
   const client = new PrivyClient({
     session: session,
   });
@@ -30,11 +66,11 @@ function App() {
       setState({
         ...state,
         userId: address,
-        username: address,
+        username: username?.attributes?.value,
         like: like,
       });
-      setUsernameInput(address);
-      setLikeCount(count);
+      setUsernameInput(username?.attributes?.value);
+      setLikeCount(like?.attributes?.value);
     } catch (error) {
       console.error(error);
     }
@@ -49,13 +85,13 @@ function App() {
     [likeCount]
   );
 
-  /* Connect to a MetaMask wallet */
+  /* Connect to a wallet */
   const connectToWallet = async () => {
     try {
       const { ethereum } = window;
 
       if (!ethereum) {
-        alert("Please install MetaMask for this demo: https://metamask.io/");
+        alert("you're not on ethereum");
         return;
       }
 
@@ -70,25 +106,28 @@ function App() {
       // it exists
       fetchDataFromPrivy();
     } catch (error) {
-      console.error(error);
+      console.error("ERROR", error);
     }
   };
 
   /* Write the user's username & like */
   const submitDataToPrivy = async () => {
+    const theObject = { username: "ELLIE", age: "28" };
     const [like, username] = await client.put(state?.userId, [
       {
         field: "username",
-        value: usernameInput,
+        value: JSON.stringify(theObject),
       },
       {
         field: "like",
         value: likeCount,
       },
     ]);
+
+    alert(JSON.stringify(theObject));
     setState({
       ...state,
-      username: username.text(),
+      username: JSON.stringify(theObject),
       like: like.text(),
     });
   };
@@ -104,7 +143,7 @@ function App() {
       {!state?.userId ? (
         <>
           <div>To get started, connect with MetaMask!</div>
-          <button onClick={connectToWallet}>Connect Wallet</button>
+          <ConnectButton />
         </>
       ) : (
         <div>
@@ -122,7 +161,7 @@ function App() {
               submitDataToPrivy();
             }}
           >
-            you have 'liked' this post: {count} times
+            you have 'liked' this post: {likeCount} times
           </button>
         </div>
       )}
