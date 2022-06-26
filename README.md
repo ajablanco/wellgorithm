@@ -5,14 +5,14 @@
 
 # Installation
 *frontend* <br/>
-```cd apps/frontend <br/>
+`cd apps/frontend <br/>
 yarn<br/>
-yarn run dev```<br/>
+yarn run dev`<br/>
 
 *example-social-app*<br/>
-```cd apps/example-social-app/frontend <br/>
+`cd apps/example-social-app/frontend <br/>
 yarn<br/>
-yarn run dev```<br/>
+yarn run dev`<br/>
 
 
 # How it Works
