@@ -12,8 +12,9 @@
 *example-social-app*<br/>
 `cd apps/example-social-app/frontend` <br/>
 `npm i`<br/>
-`add 'SKIP_PREFLIGHT_CHECK=true'` <br/>
-`'PORT=4783' to .env file` <br/>
+`add to .env file` <br/>
+`'SKIP_PREFLIGHT_CHECK=true'` <br/>
+`'PORT=4783'` <br/>
 `npm run start`<br/>
 
 
