@@ -6,13 +6,13 @@
 # Installation
 *frontend* <br/>
 `cd apps/frontend` <br/>
-`yarn`<br/>
-`yarn run dev`<br/>
+`npm i`<br/>
+`npm run dev`<br/>
 
 *example-social-app*<br/>
 `cd apps/example-social-app/frontend` <br/>
-`yarn`<br/>
-`yarn run dev`<br/>
+`npm i`<br/>
+`npm run dev`<br/>
 
 
 # How it Works
