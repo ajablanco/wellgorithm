@@ -93,6 +93,49 @@ function TheApp(props) {
     [likeCount]
   );
 
+  const [metrics, setMetrics] = useState([
+          {
+            name: "Audio",
+            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+            target: 1,
+            actual: 0,
+          },
+          {
+            name: "Text",
+            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+            target: 3,
+            actual: 3,
+          },
+          {
+            name: "Video",
+            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+            target: 2,
+            actual: 2,
+          },
+          {
+            name: "Photo",
+            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+            target: 0,
+            actual: 0,
+          },
+          {
+            name: "Mixed Media",
+            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+            target: 2,
+            actual: 1,
+          },
+        ]);
+
+  useEffect(() => {
+    const result =document.getElementById("demo")
+    console.log(result)
+    result.innerHTML = ""
+    radar.show("#demo", {
+        size: 800,
+        metrics,
+      });
+  }, [metrics])
+
   /* Connect to a wallet */
   const connectToWallet = async () => {
     try {
@@ -140,6 +183,45 @@ function TheApp(props) {
     });
   };
 
+  const handleClick = () => {
+    const newMetrics = [
+          {
+            name: "Audio",
+            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+            target: 1,
+            actual: 0,
+          },
+          {
+            name: "Text",
+            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+            target: 1,
+            actual: 1,
+          },
+          {
+            name: "Video",
+            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+            target: 2,
+            actual: 2,
+          },
+          {
+            name: "Photo",
+            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+            target: 3,
+            actual: 3,
+          },
+          {
+            name: "Mixed Media",
+            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+            target: 2,
+            actual: 1,
+          },
+        ];
+
+        console.log('got here')
+
+        setMetrics(newMetrics)
+  }
+
   // A convenient shortening of a long address
   const placeholderName =
     state?.userId?.substring(0, 5) +
@@ -147,7 +229,17 @@ function TheApp(props) {
     state?.userId?.substring(state?.userId?.length - 4);
 
   return (
-    <div class="App-header">
+    <div style={{
+              display: "flex",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              alignContent: "center",
+              flexWrap: "nowrap",
+              flexDirection: "row",
+              marginLeft: 4,
+            }}>
+          <div class="App-header">
       <img class="App-logo" src={Logo} alt={placeholderName} height={70} />
 
       {!state?.userId ? (
@@ -251,6 +343,9 @@ function TheApp(props) {
         </div>
       )}
     </div>
+    <div onClick={handleClick} id="demo"></div>
+    </div>
+
   );
 }
 
