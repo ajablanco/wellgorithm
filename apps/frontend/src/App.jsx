@@ -11,12 +11,13 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-import Logo from "./wellgorithm.png";
+import Logo from "./wellgorithm.svg";
 import Lensfrens from "./lensfrens.png";
 import Lenster from "./lenster.png";
 import Iris from "./iris.png";
 import Phaver from "./phaver.png";
 import Alphs from "./alphs-finance.png";
+import SelectCopy from "./select-copy.svg";
 
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.polygon, chain.optimism],
@@ -147,7 +148,8 @@ function TheApp(props) {
 
   return (
     <div class="App-header">
-      <img class="App-logo" src={Logo} alt={placeholderName} height={20} />
+      <img class="App-logo" src={Logo} alt={placeholderName} height={70} />
+
       {!state?.userId ? (
         <div>
           <div
@@ -159,12 +161,26 @@ function TheApp(props) {
               alignContent: "center",
               flexWrap: "wrap",
               flexDirection: "column",
+              marginLeft: 4,
             }}
           >
-            <div style={{ marginTop: 190 }}>
-              <h3 style={{ textAlign: "center" }}>
-                Select an App powered by the wellgorithm:{" "}
-              </h3>
+            <div
+              style={{
+                display: "flex",
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                alignContent: "center",
+                flexWrap: "wrap",
+                flexDirection: "column",
+                marginLeft: 4,
+
+                marginTop: 150,
+              }}
+            >
+              <div style={{ marginBottom: 16 }}>
+                <img src={SelectCopy} alt={placeholderName} width={420} />
+              </div>
               <div>
                 <img src={Lensfrens} width={90} height={80} />
                 <img
@@ -187,17 +203,31 @@ function TheApp(props) {
                 <img src={Alphs} width={90} height={80} />
               </div>
             </div>
-            <h1> You're connected 💚</h1>
+            {/* <h1> You're connected 💚</h1> */}
 
-            <ConnectButton />
-            <div style={{ margin: 16 }}>
+            <div
+              style={{
+                display: "flex",
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                alignContent: "center",
+                flexWrap: "wrap",
+                flexDirection: "column",
+                marginTop: 16,
+              }}
+            >
+              <ConnectButton />
+            </div>
+
+            {/* <div style={{ margin: 16 }}>
               <button
                 type="button"
                 style={{ backgroundColor: "#fa7f69", padding: 20 }}
               >
                 View / Customize your algorithm
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       ) : (
