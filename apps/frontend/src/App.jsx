@@ -11,8 +11,15 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
+import Logo from "./wellgorithm.png";
+import Lensfrens from "./lensfrens.png";
+import Lenster from "./lenster.png";
+import Iris from "./iris.png";
+import Phaver from "./phaver.png";
+import Alphs from "./alphs-finance.png";
+
 const { chains, provider } = configureChains(
-  [chain.mainnet],
+  [chain.mainnet, chain.polygon, chain.optimism],
   [alchemyProvider({ alchemyId: import.meta.env.ALCHEMY_ID }), publicProvider()]
 );
 
@@ -139,12 +146,60 @@ function TheApp(props) {
     state?.userId?.substring(state?.userId?.length - 4);
 
   return (
-    <div>
+    <div class="App-header">
+      <img class="App-logo" src={Logo} alt={placeholderName} height={20} />
       {!state?.userId ? (
-        <>
-          <div>To get started, connect with MetaMask!</div>
-          <ConnectButton />
-        </>
+        <div>
+          <div
+            style={{
+              display: "flex",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              alignContent: "center",
+              flexWrap: "wrap",
+              flexDirection: "column",
+            }}
+          >
+            <div style={{ marginTop: 190 }}>
+              <h3 style={{ textAlign: "center" }}>
+                Select an App powered by the wellgorithm:{" "}
+              </h3>
+              <div>
+                <img src={Lensfrens} width={90} height={80} />
+                <img
+                  src={Lenster}
+                  width={90}
+                  height={80}
+                  onClick={() =>
+                    window.open("http://localhost:4783/", "_blank")
+                  }
+                />
+                <img
+                  src={Iris}
+                  width={90}
+                  height={80}
+                  onClick={() =>
+                    window.open("http://localhost:4783/", "_blank")
+                  }
+                />
+                <img src={Phaver} width={90} height={80} />
+                <img src={Alphs} width={90} height={80} />
+              </div>
+            </div>
+            <h1> You're connected 💚</h1>
+
+            <ConnectButton />
+            <div style={{ margin: 16 }}>
+              <button
+                type="button"
+                style={{ backgroundColor: "#fa7f69", padding: 20 }}
+              >
+                View / Customize your algorithm
+              </button>
+            </div>
+          </div>
+        </div>
       ) : (
         <div>
           <h1>Hey {placeholderName} 👋</h1>

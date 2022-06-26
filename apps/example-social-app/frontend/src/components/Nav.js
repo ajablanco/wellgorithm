@@ -73,7 +73,7 @@ function Nav({ handle, setProfile, ...props }) {
       )}
       <StyledLink to={`fyp`}>
         <Subscriptions />
-        <p>For you</p>
+        <p>For you powered by the wellgorithm</p>
       </StyledLink>
       {/* <StyledLink to={`user/${Nav.handle}`}>
         <Heart filled />
