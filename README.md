@@ -11,8 +11,8 @@
 
 *example-social-app*<br/>
 `cd apps/example-social-app/frontend` <br/>
-`npm i`<br/>
-`add to .env file` <br/>
+`npm i`<br/> <br/>
+add to .env file <br/>
 `'SKIP_PREFLIGHT_CHECK=true'` <br/>
 `'PORT=4783'` <br/>
 `npm run start`<br/>
