@@ -5,14 +5,15 @@
 
 # Installation
 *frontend* <br/>
-`cd apps/frontend` <br/>
-`yarn`<br/>
-`yarn run dev`<br/>
+```cd apps/frontend <br/>
+yarn<br/>
+yarn run dev```<br/>
 
 *example-social-app*<br/>
-`cd apps/example-social-app/frontend`<br/>
-`yarn`<br/>
-`yarn run dev`<br/>
+```cd apps/example-social-app/frontend <br/>
+yarn<br/>
+yarn run dev```<br/>
+
 
 # How it Works
 We have built a custom ‘wellgorize’ algorithm that will automatically sort incoming lens publications. Apps that use our protocol are encouraged to build front-end solutions that have visually similar experiences to TikTok’s ‘for you page’ or Instagram’s ‘explore’ page with our sorting protocol. Our individual users data models will be stored on Privy. & User interactions and events on any lens publications will be captured through our custom-built analytics tooling and stored in IPFS.
