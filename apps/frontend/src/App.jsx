@@ -18,6 +18,9 @@ import Iris from "./iris.png";
 import Phaver from "./phaver.png";
 import Alphs from "./alphs-finance.png";
 import SelectCopy from "./select-copy.svg";
+import Ethereum from "./ethereum-logo.png";
+import Optimisim from "./optimism-logo.png";
+import Polygon from "./polygon-logo.png";
 
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.polygon, chain.optimism],
@@ -94,72 +97,47 @@ function TheApp(props) {
   );
 
   const [metrics, setMetrics] = useState([
-          {
-            name: "Audio",
-            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
-            target: 1,
-            actual: 0,
-          },
-          {
-            name: "Text",
-            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
-            target: 3,
-            actual: 3,
-          },
-          {
-            name: "Video",
-            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
-            target: 2,
-            actual: 2,
-          },
-          {
-            name: "Photo",
-            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
-            target: 0,
-            actual: 0,
-          },
-          {
-            name: "Mixed Media",
-            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
-            target: 2,
-            actual: 1,
-          },
-        ]);
+    {
+      name: "Audio",
+      range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+      target: 1,
+      actual: 0,
+    },
+    {
+      name: "Text",
+      range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+      target: 3,
+      actual: 3,
+    },
+    {
+      name: "Video",
+      range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+      target: 2,
+      actual: 2,
+    },
+    {
+      name: "Photo",
+      range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+      target: 0,
+      actual: 0,
+    },
+    {
+      name: "Mixed Media",
+      range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+      target: 2,
+      actual: 1,
+    },
+  ]);
 
   useEffect(() => {
-    const result =document.getElementById("demo")
-    console.log(result)
-    result.innerHTML = ""
+    const result = document.getElementById("demo");
+    console.log(result);
+    result.innerHTML = "";
     radar.show("#demo", {
-        size: 800,
-        metrics,
-      });
-  }, [metrics])
-
-  /* Connect to a wallet */
-  const connectToWallet = async () => {
-    try {
-      const { ethereum } = window;
-
-      if (!ethereum) {
-        alert("you're not on ethereum");
-        return;
-      }
-
-      await session.authenticate();
-      const userId = await session.address();
-      setState({
-        ...state,
-        userId: userId,
-      });
-
-      // After the wallet has been detected, we try to grab data from Privy if
-      // it exists
-      fetchDataFromPrivy();
-    } catch (error) {
-      console.error("ERROR", error);
-    }
-  };
+      size: 800,
+      metrics,
+    });
+  }, [metrics]);
 
   /* Write the user's username & like */
   const submitDataToPrivy = async () => {
@@ -185,42 +163,42 @@ function TheApp(props) {
 
   const handleClick = () => {
     const newMetrics = [
-          {
-            name: "Audio",
-            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
-            target: 1,
-            actual: 0,
-          },
-          {
-            name: "Text",
-            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
-            target: 1,
-            actual: 1,
-          },
-          {
-            name: "Video",
-            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
-            target: 2,
-            actual: 2,
-          },
-          {
-            name: "Photo",
-            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
-            target: 3,
-            actual: 3,
-          },
-          {
-            name: "Mixed Media",
-            range: ["Value 0", "Value 1", "Value 2", "Value 3"],
-            target: 2,
-            actual: 1,
-          },
-        ];
+      {
+        name: "Audio",
+        range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+        target: 1,
+        actual: 0,
+      },
+      {
+        name: "Text",
+        range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+        target: 1,
+        actual: 1,
+      },
+      {
+        name: "Video",
+        range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+        target: 2,
+        actual: 2,
+      },
+      {
+        name: "Photo",
+        range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+        target: 3,
+        actual: 3,
+      },
+      {
+        name: "Mixed Media",
+        range: ["Value 0", "Value 1", "Value 2", "Value 3"],
+        target: 2,
+        actual: 1,
+      },
+    ];
 
-        console.log('got here')
+    console.log("got here");
 
-        setMetrics(newMetrics)
-  }
+    setMetrics(newMetrics);
+  };
 
   // A convenient shortening of a long address
   const placeholderName =
@@ -229,33 +207,23 @@ function TheApp(props) {
     state?.userId?.substring(state?.userId?.length - 4);
 
   return (
-    <div style={{
-              display: "flex",
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              alignContent: "center",
-              flexWrap: "nowrap",
-              flexDirection: "row",
-              marginLeft: 4,
-            }}>
-          <div class="App-header">
-      <img class="App-logo" src={Logo} alt={placeholderName} height={70} />
+    <div
+      style={{
+        display: "flex",
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        alignContent: "center",
+        flexWrap: "nowrap",
+        flexDirection: "row",
+        marginLeft: 4,
+      }}
+    >
+      <div class="App-header">
+        <img class="App-logo" src={Logo} alt={placeholderName} height={70} />
 
-      {!state?.userId ? (
-        <div>
-          <div
-            style={{
-              display: "flex",
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              alignContent: "center",
-              flexWrap: "wrap",
-              flexDirection: "column",
-              marginLeft: 4,
-            }}
-          >
+        {!state?.userId ? (
+          <div>
             <div
               style={{
                 display: "flex",
@@ -266,86 +234,140 @@ function TheApp(props) {
                 flexWrap: "wrap",
                 flexDirection: "column",
                 marginLeft: 4,
-
-                marginTop: 150,
               }}
             >
-              <div style={{ marginBottom: 16 }}>
-                <img src={SelectCopy} alt={placeholderName} width={420} />
-              </div>
-              <div>
-                <img src={Lensfrens} width={90} height={80} />
-                <img
-                  src={Lenster}
-                  width={90}
-                  height={80}
-                  onClick={() =>
-                    window.open("http://localhost:4783/", "_blank")
-                  }
-                />
-                <img
-                  src={Iris}
-                  width={90}
-                  height={80}
-                  onClick={() =>
-                    window.open("http://localhost:4783/", "_blank")
-                  }
-                />
-                <img src={Phaver} width={90} height={80} />
-                <img src={Alphs} width={90} height={80} />
-              </div>
-            </div>
-            {/* <h1> You're connected 💚</h1> */}
+              <div
+                style={{
+                  display: "flex",
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignContent: "center",
+                  flexWrap: "wrap",
+                  flexDirection: "column",
+                  marginLeft: 4,
 
-            <div
-              style={{
-                display: "flex",
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                alignContent: "center",
-                flexWrap: "wrap",
-                flexDirection: "column",
-                marginTop: 16,
-              }}
-            >
-              <ConnectButton />
-            </div>
-
-            {/* <div style={{ margin: 16 }}>
-              <button
-                type="button"
-                style={{ backgroundColor: "#fa7f69", padding: 20 }}
+                  marginTop: 150,
+                }}
               >
-                View / Customize your algorithm
-              </button>
-            </div> */}
-          </div>
-        </div>
-      ) : (
-        <div>
-          <h1>Hey {placeholderName} 👋</h1>
-          <h2>LENS POST</h2>
-          <h3>
-            click the button below to like this post! *you can like multiple
-            times*
-          </h3>
-          <button
-            type="button"
-            onClick={() => {
-              setCount((count) => count + 1);
-              setLikeCount(count);
-              submitDataToPrivy();
-            }}
-          >
-            you have 'liked' this post: {likeCount} times
-          </button>
-        </div>
-      )}
-    </div>
-    <div onClick={handleClick} id="demo"></div>
-    </div>
+                <div style={{ marginBottom: 16 }}>
+                  <img src={SelectCopy} alt={placeholderName} width={420} />
+                </div>
+                <div>
+                  <img src={Lensfrens} width={90} height={80} />
+                  <img
+                    src={Lenster}
+                    width={90}
+                    height={80}
+                    onClick={() =>
+                      window.open("http://localhost:4783/", "_blank")
+                    }
+                  />
+                  <img
+                    src={Iris}
+                    width={90}
+                    height={80}
+                    onClick={() =>
+                      window.open("http://localhost:4783/", "_blank")
+                    }
+                  />
+                  <img src={Phaver} width={90} height={80} />
+                  <img src={Alphs} width={90} height={80} />
+                </div>
+              </div>
+              {/* <h1> You're connected 💚</h1> */}
 
+              <div
+                style={{
+                  display: "flex",
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignContent: "center",
+                  flexWrap: "wrap",
+                  flexDirection: "column",
+                  marginTop: 16,
+                }}
+              >
+                <ConnectButton />
+              </div>
+
+              <div
+                style={{
+                  margin: 16,
+                  display: "flex",
+                  flex: 1,
+                  alignItems: "center",
+                  alignContent: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                Mint your algorithm on:
+                <div style={{ padding: 10 }}>
+                  <img
+                    src={Ethereum}
+                    width={50}
+                    height={50}
+                    style={{ padding: 2 }}
+                  />
+                  <img
+                    src={Optimisim}
+                    width={50}
+                    height={50}
+                    style={{ padding: 4 }}
+                  />
+                  <img
+                    src={Polygon}
+                    width={50}
+                    height={50}
+                    style={{ padding: 2 }}
+                  />
+                </div>
+                <button
+                  style={{
+                    fontSize: 16,
+                  }}
+                >
+                  Mint
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <h1>Hey {placeholderName} 👋</h1>
+            <h2>LENS POST</h2>
+            <h3>
+              click the button below to like this post! *you can like multiple
+              times*
+            </h3>
+            <button
+              style={{
+                display: "inline-block",
+                padding: "0.5em 3em",
+                border: "0.16em solid #FFFFFF",
+                margin: "0 0.3em 0.3em 0",
+                boxSizing: "border-box",
+                textDecoration: "none",
+                textTransform: "uppercase",
+                fontFamily: "Roboto",
+                fontWeight: 400,
+                color: "#FFFFFF",
+                textAlign: "center",
+              }}
+              onClick={() => {
+                setCount((count) => count + 1);
+                setLikeCount(count);
+                submitDataToPrivy();
+              }}
+            >
+              you have 'liked' this post: {likeCount} times
+            </button>
+          </div>
+        )}
+      </div>
+      <div onClick={handleClick} id="demo"></div>
+    </div>
   );
 }
 
